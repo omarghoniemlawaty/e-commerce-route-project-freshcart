@@ -3,7 +3,7 @@ import { Col } from "react-bootstrap";
 import HomeSlider from "./HomeSlider";
 
 const MainSlider = () => {
-  const mainImages = [ "/images/slider-image-2.webp", "/images/slider-image-1.webp", "/images/slider-image-3.webp"];
+  const mainImages = [ "/images/food 2.jpeg", "/images/food 3.jpeg", "/images/food 4.jpeg"];
 
   return (
     <Fragment>    
@@ -33,7 +33,7 @@ const MainSlider = () => {
         </div>
 
         <div className="me-1">
-          <img src="/images/banner-2.webp" alt="banner2" className="banner2 w-100 m-2" height={225} />
+          <img src="/images/food 5.jpeg" alt="banner2" className="banner2 w-100 m-2" height={225} />
         </div>
       </Col>
     </Fragment>

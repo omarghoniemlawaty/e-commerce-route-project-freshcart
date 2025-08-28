@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Style from "./Cart.module.css";
 import Button from "../../Components/Ui/Button";
 
@@ -10,10 +10,14 @@ const CartItems = ({
   removeSpecificCartItem,
 }) => {
   const notFound = product.product === undefined;
-  
+  const [deleting, setDeleting] = useState(false);
+
   return (
     <Fragment>
-      <div className={"w-50"}>
+      <div
+        className={`w-50 ${deleting ? Style.fadeOut : ''}`}
+        style={{ transition: 'opacity 0.4s' }}
+      >
         <ul className="d-flex">
           <li>
             <img
@@ -22,9 +26,10 @@ const CartItems = ({
               }
               alt={product.title}
               width={80}
+              className={Style.imgAnim}
             />
           </li>
-          <li className="p-2">
+          <li className={`p-2 ${Style.hoverAnim}` }>
             <p>{notFound ? product.title : product.product.title}</p>
             <p>${product.price}</p>
           </li>
@@ -35,7 +40,7 @@ const CartItems = ({
         <ul className=" d-flex justify-content-between align-items-center h-100">
           <li className={`${Style.productUpdateBtnsCover}`}>
             <Button
-              className={`${Style.incrementBtn} me-1 border-0`}
+              className={`${Style.incrementBtn} me-1 border-0 ${Style.btnAnim}`}
               onClick={() => {
                 updateProductInCart(
                   notFound ? product : product.product,
@@ -44,12 +49,15 @@ const CartItems = ({
                 );
                 setBeforeUnloadEvent("increment");
               }}
+              onMouseDown={e => e.currentTarget.classList.add(Style.btnClick)}
+              onMouseUp={e => e.currentTarget.classList.remove(Style.btnClick)}
+              onMouseLeave={e => e.currentTarget.classList.remove(Style.btnClick)}
             >
               <i className={`plus fa-sharp-duotone fa-solid fa-plus`}></i>
             </Button>
             <span>{product.count}</span>
             <Button
-              className={`${Style.decrementBtn} me-2 border-0`}
+              className={`${Style.decrementBtn} me-2 border-0 ${Style.btnAnim}`}
               onClick={() => {
                 updateProductInCart(
                   notFound ? product : product.product,
@@ -58,6 +66,9 @@ const CartItems = ({
                 );
                 setBeforeUnloadEvent("decrement");
               }}
+              onMouseDown={e => e.currentTarget.classList.add(Style.btnClick)}
+              onMouseUp={e => e.currentTarget.classList.remove(Style.btnClick)}
+              onMouseLeave={e => e.currentTarget.classList.remove(Style.btnClick)}
             >
               <i className={` minus fa-solid fa-minus`}></i>
             </Button>
@@ -67,12 +78,18 @@ const CartItems = ({
           </li>
           <li>
             <svg
-              className={`${Style.svgColor} mb-2`}
+              className={`${Style.svgColor} mb-2 ${Style.svgAnim}`}
               onClick={() => {
-                removeSpecificCartItem(
-                  notFound ? product.id : product.product.id
-                );
+                setDeleting(true);
+                setTimeout(() => {
+                  removeSpecificCartItem(
+                    notFound ? product.id : product.product.id
+                  );
+                }, 400);
               }}
+              onMouseDown={e => e.currentTarget.classList.add(Style.svgClick)}
+              onMouseUp={e => e.currentTarget.classList.remove(Style.svgClick)}
+              onMouseLeave={e => e.currentTarget.classList.remove(Style.svgClick)}
               viewBox="0 0 24 24"
               fillRule="currentColor"
               width="24"

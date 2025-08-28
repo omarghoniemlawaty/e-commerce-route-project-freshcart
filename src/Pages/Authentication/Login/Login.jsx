@@ -7,10 +7,11 @@ import Style from "../Authentication.module.css";
 import loginImage from "../../../images/laptop.webp";
 import iconGoogle from "../../../images/icon-google.webp";
 import iconFacebook from "../../../images/icon-facebook.webp";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { email, password } = useValidation();
+  const navigate = useNavigate();
 
   const initialValues = {
     email: "",
@@ -25,6 +26,12 @@ const Login = () => {
   const filterData = detailsInputs.filter((detailsInput) =>
     userData.includes(detailsInput.name)
   );
+
+  const handleGuest = () => {
+    localStorage.removeItem("token");
+    localStorage.setItem("user", JSON.stringify({ name: "Guest", email: "" }));
+    navigate("../");
+  };
 
   return (
     <div
@@ -63,6 +70,9 @@ const Login = () => {
                   <button className="px-4 py-1 facebook_btn border-0 text-black ">
                     <img src={iconGoogle} alt="icon-google" width={20} /> Sign
                     Up With Google
+                  </button>
+                  <button className="btn btn-outline-secondary mt-3 w-100" onClick={handleGuest}>
+                    Enter as Guest
                   </button>
                 </div>
               </Col>

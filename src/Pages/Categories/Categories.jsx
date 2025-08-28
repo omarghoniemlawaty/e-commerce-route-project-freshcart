@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./Categories.module.css";
 import { Col, Container, Row } from "react-bootstrap";
 import { useFetch } from "../../Hooks/useFetch";
 import ModalContent from "../../Components/Ui/ModalContent";
@@ -30,7 +31,8 @@ const Categories = () => {
                   data?.data?.data.map((product)=> (
                     <Col lg={3} md={4} sm={12} xs={12} key={product._id}>
                       <div
-                        className="my-3 card m-2"
+                        className={`my-3 card m-2 ${styles.fadeInUp} ${styles.cardHover}`}
+                        style={{ animationDelay: `${Math.random() * 200}ms` }}
                       >
                         <img
                           src={product.image}

@@ -48,7 +48,7 @@ const SomeProducts = ({ listProducts }) => {
                     <h6 className="ms-3">${product.price}</h6>
                   </div>
                   <Button
-                    className={`buyBtn py-1 mb-2 m-auto px-4 border-0 `}
+                    className={`category-btn buyBtn py-1 mb-2 m-auto px-4 border-0`}
                     onClick={() => {
                       addProductToCart(product);
                     }}
@@ -90,10 +90,10 @@ const SomeProducts = ({ listProducts }) => {
     
     </Col>
 
-      <Col md={4} sm={6} xs={8} className={`${Style.button} see-all m-auto text-center p-2 rounded-3`}>
-        <Link to="../products" className={`${Style.link} link w-100 my-5`}>
-           <i className="fa-solid fa-arrow-left arrow me-3 fs-5 p-1"></i> See All Products
-        </Link>
+  <Col md={4} sm={6} xs={8} className={`${Style.button} see-all m-auto text-center p-2 rounded-3`}>
+    <Link to="../products" className={`category-btn ${Style.link} link w-100 my-5`}>
+       <i className="fa-solid fa-arrow-left arrow me-3 fs-5 p-1"></i> See All Products
+    </Link>
   </Col>
   </>
   );

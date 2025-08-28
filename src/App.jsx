@@ -14,7 +14,12 @@ import { ToastContainer, Zoom } from "react-toastify";
 import ProtectedRoute from "./Components/ProtectedRoute.jsx";
 import CheckOut from "./Pages/CheckOut/CheckOut.jsx";
 import Wishlist from "./Pages/Wishlist/Wishlist.jsx";
+
+
+
+
 import NotFound from "./Pages/NotFound/NotFound.jsx";
+import SettingsPage from "./Pages/Settings/SettingsPage.jsx";
 
 
 const router = createBrowserRouter([
@@ -31,6 +36,7 @@ const router = createBrowserRouter([
       { path: "products/:id", element: <DetailsProduct /> },
       { path: "checkout", element: <CheckOut /> },
       { path:"Wishlist" , element:<Wishlist/> ,} , 
+      { path: "settings", element: <SettingsPage /> },
       {
         path: "/login",
         element: (

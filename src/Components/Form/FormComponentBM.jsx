@@ -17,6 +17,7 @@ const FormComponentBM = ({
   success,
   token,
   btn,
+  onOrderSuccess,
 }) => {
   const navigate = useNavigate();
   const { setToken, fetchCart } = useContext(CartContext);
@@ -36,18 +37,34 @@ const FormComponentBM = ({
       setMessage("");
     }, 3000);
 
+    // Save user info on login
+    if (url === "api/v1/auth/signin" && responsive?.data?.user) {
+      localStorage.setItem("user", JSON.stringify(responsive.data.user));
+    }
     if (token === undefined && url === "api/v1/auth/signin") {
       localStorage.setItem("token", JSON.stringify(responsive?.data.token));
       setToken(responsive?.data.token);
     }
+    // Save user info on register
+    if (url === "api/v1/auth/signup" && responsive?.data?.user) {
+      localStorage.setItem("user", JSON.stringify(responsive.data.user));
+    }
 
+    const isOrder = url && url.includes("orders");
+    if (
       (responsive?.data?.message !== undefined ||
-      responsive.status === 200 ||
-      responsive.status === 201) &&
+        responsive.status === 200 ||
+        responsive.status === 201) &&
       (responsive?.data?.message === "success" ||
-      responsive.status === 200 ||
-      responsive.status === 201) &&
-      navigate(success);
+        responsive.status === 200 ||
+        responsive.status === 201)
+    ) {
+      if (isOrder && typeof onOrderSuccess === "function") {
+        onOrderSuccess(values, responsive);
+      } else if (success) {
+        navigate(success);
+      }
+    }
     fetchCart();
   };
   

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./Brands.module.css";
 import { Col, Container, Row } from "react-bootstrap";
 import { useFetch } from "../../Hooks/useFetch";
 import ModalContent from "../../Components/Ui/ModalContent";
@@ -29,7 +30,7 @@ if(!loading){
                   data?.data?.data.map((product) => (
                     <Col lg={3} md={4} sm={12} xs={12} key={product._id}>
                       <div
-                        className="my-3 card m-2 pointer"
+                        className={`my-3 card m-2 pointer ${styles.fadeInUp} ${styles.cardHover}`}
                       >
                         <img
                           src={product.image}

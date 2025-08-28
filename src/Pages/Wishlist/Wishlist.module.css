@@ -10,6 +10,56 @@
 .svgColor{
     fill: #030d18 !important;
 }
-.updateCountItem{
+ .updateCountItem{
     width:15%;
+}
+
+/* Fade out animation for delete */
+.fadeOut {
+    opacity: 0 !important;
+    transition: opacity 0.4s !important;
+}
+
+/* Button click and hover animation */
+.btnAnim {
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+.btnAnim:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.btnClick {
+    transform: scale(0.95);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+}
+
+/* SVG icon click and hover animation */
+.svgAnim {
+    transition: transform 0.15s, fill 0.15s;
+    cursor: pointer;
+}
+.svgAnim:hover {
+    transform: scale(1.15) rotate(-8deg);
+    fill: #0dcaf0 !important;
+}
+.svgClick {
+    transform: scale(0.92) rotate(8deg);
+    fill: #dc3545 !important;
+}
+
+/* Image hover animation */
+.imgAnim {
+    transition: transform 0.2s;
+}
+.imgAnim:hover {
+    transform: scale(1.08) rotate(-2deg);
+}
+
+/* List item hover animation */
+.hoverAnim {
+    transition: background 0.18s, color 0.18s;
+}
+.hoverAnim:hover {
+    background: #f1f3f6;
+    color: #0dcaf0;
 }

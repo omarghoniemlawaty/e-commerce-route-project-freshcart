@@ -28,13 +28,14 @@ const WishlistContextProvider = ({ children }) => {
   const removeToWishlist = async (id, text) => {
     if (token !== null) {
       notifySuccess(text);
+      // Do NOT set loading here, just update wishlist after API call
       const responsive = await mainFormHandlerTypeRaw({
         method: "delete",
         type: `api/v1/wishlist/${id}`,
         token,
       });
       setWishlistProduct(responsive.data.data);
-    }else notifySuccess("Please log in")
+    } else notifySuccess("Please log in")
   };
 
   useEffect(() => {

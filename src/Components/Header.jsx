@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Link, NavLink, useParams } from "react-router-dom";
+import { Link, NavLink, useParams, useLocation } from "react-router-dom";
 import { CartContext } from "../Store/CartContext";
 import { totalCartItems } from "../Logic/Logic";
 import Offcanvas from "react-bootstrap/Offcanvas";
@@ -10,7 +10,8 @@ import { WishlistContext } from "../Store/WishlistContext";
 
 const Header = () => {
   const ref = useRef(0);
-  const { items, token, setToken } = useContext(CartContext);
+  const location = useLocation();
+  const { items, token } = useContext(CartContext);
   const { responsive } = useContext(WishlistContext);
   const itemsCount = totalCartItems(items);
   const [change, setChange] = useState(true);
@@ -34,78 +35,63 @@ const Header = () => {
       <Navbar
         ref={ref}
         expand={"md"}
-        className={change ? "navbar w-100" : "active_Nav position-fixed w-100"}
+        className={
+          (change ? "navbar w-100" : "active_Nav position-fixed w-100") +
+          " bg-secondary" // Bootstrap gray background
+        }
+        style={{ minHeight: 80 }}
       >
         <Container fluid>
-      
-      <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} />  
+          <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${"md"}`} />
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand-${"md"}`}
             aria-labelledby={`offcanvasNavbarLabel-expand-${"md"}`}
             placement="end"
           >
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-md`}>
-               
-              </Offcanvas.Title>
+              <Offcanvas.Title id={`offcanvasNavbarLabel-expand-md`}></Offcanvas.Title>
             </Offcanvas.Header>
-
             <Offcanvas.Body>
-              <Nav className="align-items-center justify-content-between flex-grow-1 pe-3">
-                <Nav className="w-50">
-                  <Navbar.Brand className="brand pointer mx-3">
-                    <NavLink className={`Nav-Link pointer`} to={"/"} end>
-                        <img src="/images/logo.webp" alt="logo" width={125} fetchPriority="high"/>    
+              <Nav className="align-items-center justify-content-between flex-grow-1 pe-3 flex-row">
+                <Nav className="d-flex align-items-center flex-row gap-3" style={{ minWidth: 220 }}>
+                  <Navbar.Brand className="brand pointer d-flex align-items-center me-3 p-0" style={{ minWidth: 130 }}>
+                    <NavLink className={`Nav-Link pointer p-0 m-0`} to={"/"} end style={{ display: "flex", alignItems: "center" }}>
+                      <img
+                        src="/images/logo.jpg"
+                        alt="logo"
+                        width={110}
+                        height={50}
+                        style={{ objectFit: "contain", display: "block" }}
+                        fetchPriority="high"
+                      />
                     </NavLink>
                   </Navbar.Brand>
-                  <NavLink className={`p-1 ms-3 Nav-Link mt-2`} to={"/"} end>
+                  <NavLink className={`p-1 ms-2 Nav-Link mt-2`} to={"/"} end>
                     Home
                   </NavLink>
-
-                  <NavLink
-                    className="p-1 ms-3 Nav-Link mt-2"
-                    to={"/categories"}
-                  >
+                  <NavLink className="p-1 ms-2 Nav-Link mt-2" to={"/categories"}>
                     Categories
                   </NavLink>
-
-                  <NavLink className="p-1 ms-3 Nav-Link mt-2" to={"/brands"}>
+                  <NavLink className="p-1 ms-2 Nav-Link mt-2" to={"/brands"}>
                     Brands
                   </NavLink>
-
                   <NavLink
-                    className={`${
-                      id === undefined ? "Nav-Link" : "sub-color"
-                    } mt-2 ms-3 p-1 `}
+                    className={`${id === undefined ? "Nav-Link" : "sub-color"} mt-2 ms-2 p-1`}
                     to={"/products"}
                   >
                     Products
                   </NavLink>
                 </Nav>
-
-                <Nav>
+                <Nav className="d-flex align-items-center flex-row gap-2">
                   {token === null ? (
-                    <NavLink
-                      className="Nav-Link login py-1 px-3 my-2 me-5"
-                      to={"login"}
-                    >
+                    <NavLink className="Nav-Link login py-1 px-3 my-2 me-4" to={"/login"}>
                       Login
                     </NavLink>
                   ) : (
-                    <Link
-                      to={"../"}
-                      className={`p-1 mt-1 me-5 link `}
-                      onClick={() => {
-                        setToken(null);
-                        localStorage.removeItem("token");
-                      }}
-                    >
-                      <button className="logOut mb-2 py-1 px-3 border-0">
-                        Logout
-                      </button>
-                    </Link>
+                    <NavLink className="p-1 Nav-Link mt-2" to={"/settings"} style={{marginLeft: 0}}>
+                      <i className="fa-solid fa-gear fs-4"></i>
+                    </NavLink>
                   )}
-
                   <Link to={"../cart"} className={"text-center mb-2"}>
                     <svg
                       className={`cart`}
@@ -114,7 +100,11 @@ const Header = () => {
                       viewBox="0 0 164.9 196.4"
                       preserveAspectRatio="xMinYMax meet"
                       data-hook="svg-icon-9"
-                      fill={`${items.length !== 0 ? "#07b6da" : "#f5f5f5"}`}
+                      fill={
+                        location.pathname.includes("cart")
+                          ? "#07b6da"
+                          : "#fff"
+                      }
                     >
                       <text
                         x="84"
@@ -130,9 +120,14 @@ const Header = () => {
                       <path d="M156.9 70.5v118H8v-118h148.9m8-8H0v134h164.9v-134z"></path>
                     </svg>
                   </Link>
-
                   <Link to={"../wishlist"} className={"text-center"}>
-                    <i className="wishlist m-2 ms-3 p-1 fs-3 text-light fa-regular fa-heart">
+                    <i
+                      className="wishlist m-2 ms-3 p-1 fs-3 fa-regular fa-heart"
+                      style={{
+                        color: location.pathname.includes("wishlist") ? "#07b6da" : "#fff",
+                        transition: "color 0.3s"
+                      }}
+                    >
                       <p className="wishlist-product-count">
                         {responsive?.data?.data.length !== undefined
                           ? responsive?.data?.data.length
