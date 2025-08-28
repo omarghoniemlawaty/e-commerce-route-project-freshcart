@@ -1,0 +1,38 @@
+.coverLoginPage{
+   background-color: rgb(240, 240, 240) !important;
+   min-height: 100vh;
+}
+.icon_facebook{
+    border-radius: 50%;
+}
+.sign_box{
+    width: 60%;
+    border-radius:2.5rem;
+    overflow: hidden;
+}
+.sign_tex{
+    background-color: rgba(17, 17, 29, 0.116);
+    width: 60%;
+    height: 100%;
+}
+.sign_inputs{
+    width: 40%;
+    height: 100%;
+    background-color: rgb(248, 249, 250); 
+}
+.sign_inputs{
+    width: 70%;
+    height: 100%;
+    background-color: rgb(248, 249, 250); 
+}
+.formInputs{
+  border: 0;
+  width: 95%;
+  background-color: rgba(190, 190, 190, 0.534);
+  padding:0.3rem 0.5rem;
+  border-radius: 0.3rem;
+  margin: 0.2rem;  
+}  
+.formInputs::placeholder{
+    color: rgb(146, 147, 148);
+}

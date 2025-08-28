@@ -1,0 +1,19 @@
+.icons{
+  transition: all 1s;
+}
+.icons:hover {
+  color: #07b6da;
+  transform: scale(1.2, 1.2);
+}
+footer{
+    background-color: var(--main-color);
+}
+
+.Share_App_Link {
+    transition: all 1s;
+}
+.Share_App_Link:hover{
+    background-color: #0065a8 !important;
+    color: #d8f3ff;
+}
+  

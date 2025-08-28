@@ -1,0 +1,24 @@
+.mySwiper2{
+  box-shadow: 1px 1px 4px 0.1px #44414191;
+  border: 0;
+  border-left: #0594b1 1px solid;
+  border-right: #0594b1 1px solid;
+  margin: 5rem;
+}
+.mySwiper{
+  box-shadow: 1px 1px 4px 0.1px #44414191;
+  border: 0;
+  border-left: #0594b1 1px solid;
+  border-right: #0594b1 1px solid;
+}
+.SwiperSlide {
+  box-shadow: 1px 1px 0.5px 1.8px rgb(228, 226, 226);
+  margin: 0.3rem;
+}
+.addTOCart{
+
+transition: all 1s;
+}
+.addTOCart:hover{
+    background-color:var(--secondary-color) !important;
+}

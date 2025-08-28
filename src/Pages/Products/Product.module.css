@@ -1,0 +1,30 @@
+.next,
+.prev,
+.sub_color {
+  background-color: var(--main-color) !important;
+  color: var(--sub-color);
+  transition: all 1s;
+}
+.prev:hover,
+.next:hover,
+.pageNumber:hover {
+  background: var(--secondary-color) !important ;
+  color: var(--main-color);
+  color: var(--main-color) !important;
+  background: var(--sub-color) !important;
+}
+.pageNumber {
+  background-color: var(--main-color);
+  color: var(--sub-color);
+}
+.page_number_color_after_focus {
+  color: var(--secondary-color);
+  background-color: var(--sub-color);
+  color:var(--main-color);
+}
+.sub_color {
+  background-color: var(--main-color) !important;
+  color: #e6e6e64b !important;
+  cursor:no-drop;
+
+}

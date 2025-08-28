@@ -1,0 +1,53 @@
+.nextArrow{
+    background-color: aqua;
+    align-items: center;
+}
+.cart_shopping {
+  color: #0594b1;
+}
+.cart_shopping:hover {
+  color: #097e96;
+}
+
+
+.button {
+  z-index: 1;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+  background-color:var(--sub-color) !important;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  color:var(--main-color);
+  overflow: hidden;
+  transition: color 0.4s ease-in-out;
+}
+
+.button::before {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  bottom: 100%;
+  left: 100%;
+  width: 3.5em;
+  height: 1em;
+  border-radius: 50%;
+  background-color:var(--main-color);
+  transform-origin: center;
+  transform: translate3d(-50%, 50%, 0) scale3d(0, 0, 0);
+  transition:all 1s;
+  color: #161616 !important;
+  cursor: pointer;
+}
+.link{
+    color: var(--main-color) !important;
+}
+.button:hover .link{
+  cursor: pointer;
+  color: var(--sub-color) !important;
+}
+
+.button:hover::before {
+  transform: translate3d(-50%, 50%, 0) scale3d(15, 15, 15);
+}

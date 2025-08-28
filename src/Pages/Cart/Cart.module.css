@@ -1,0 +1,66 @@
+.cartCover{
+    background-color: rgb(240, 240, 240) !important;
+    min-height: 100vh;
+}
+.cartItems{
+    min-height: 5rem;
+    max-height:30rem;
+    overflow:auto;
+}
+.updateCountItem{
+    width: 35%;
+}
+.productUpdateBtnsCover{
+    box-shadow: 1px 0.5px 0.5px 0.2px #e0dcdc;
+    border-radius:0.2rem;
+    background-color: #d9dddf81;
+    width: 6rem;
+    min-width: 6rem;
+    text-align: center;
+}
+.incrementBtn ,.decrementBtn{
+    background-color: transparent;
+    font-size: 0.7rem;
+    color:#0c161b;
+    width: 1.6rem;
+    height: 2rem;
+    transition: all 1s;
+}
+.incrementBtn:hover ,.decrementBtn:hover{
+  background-color:var(--sub-color);
+  color:#030d18 ;
+}
+.svgColor{
+    fill: #030d18 !important;
+}
+.clearAllBtn{
+    color: var(--main-color);
+    background-color:var(--sub-color);
+    font-weight: 500;
+    border-radius: 0.3rem;
+    transition: 1s all;
+}
+.clearAllBtn:hover{
+    background-color: var(--main-color);
+    color:var(--sub-color);
+}
+.OrderSummary{
+    padding: 0.1rem;
+    min-height: 10;
+    max-height: 20rem;
+}
+.checkOutBtn{
+    color: var(--main-color);
+    background-color:var(--sub-color);
+    font-weight: 700;
+    border-radius: 0.3rem;
+    transition: 1s all;
+}
+.checkOutBtn:hover{
+    background-color:var(--main-color);
+    color:var(--sub-color);
+}
+.empty{
+    min-height: 12rem;
+}
+
