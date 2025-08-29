@@ -37,25 +37,31 @@ const FormComponentBM = ({
       setMessage("");
     }, 3000);
 
+    // Error handling: check for valid response before accessing properties
+    if (!responsive || !responsive.data) {
+      console.error("Login/Register failed:", responsive);
+      return;
+    }
+
     // Save user info on login
-    if (url === "api/v1/auth/signin" && responsive?.data?.user) {
+    if (url === "api/v1/auth/signin" && responsive.data.user) {
       localStorage.setItem("user", JSON.stringify(responsive.data.user));
     }
     if (token === undefined && url === "api/v1/auth/signin") {
-      localStorage.setItem("token", JSON.stringify(responsive?.data.token));
-      setToken(responsive?.data.token);
+      localStorage.setItem("token", JSON.stringify(responsive.data.token));
+      setToken(responsive.data.token);
     }
     // Save user info on register
-    if (url === "api/v1/auth/signup" && responsive?.data?.user) {
+    if (url === "api/v1/auth/signup" && responsive.data.user) {
       localStorage.setItem("user", JSON.stringify(responsive.data.user));
     }
 
     const isOrder = url && url.includes("orders");
     if (
-      (responsive?.data?.message !== undefined ||
+      (responsive.data.message !== undefined ||
         responsive.status === 200 ||
         responsive.status === 201) &&
-      (responsive?.data?.message === "success" ||
+      (responsive.data.message === "success" ||
         responsive.status === 200 ||
         responsive.status === 201)
     ) {

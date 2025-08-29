@@ -21,6 +21,7 @@ function getUserProfile() {
 
 const SettingsPage = () => {
   const navigate = useNavigate();
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -28,6 +29,18 @@ const SettingsPage = () => {
     setTimeout(() => {
       window.location.replace("/login");
     }, 100);
+  };
+
+  const handleDeleteAccount = () => {
+    if (window.confirm("Are you sure you want to delete your account forever? This action cannot be undone.")) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      // Optionally clear other user-related data here
+      navigate("/register");
+      setTimeout(() => {
+        window.location.replace("/register");
+      }, 100);
+    }
   };
 
   const profile = getUserProfile();
@@ -48,8 +61,11 @@ const SettingsPage = () => {
               <h5>Purchase History</h5>
               <PurchaseHistoryPage />
             </div>
-            <Button variant="danger" onClick={handleLogout} className="mt-3">
+            <Button variant="danger" onClick={handleLogout} className="mt-3 me-2">
               Logout
+            </Button>
+            <Button variant="outline-danger" onClick={handleDeleteAccount} className="mt-3">
+              Delete Account Forever
             </Button>
           </div>
         </Col>

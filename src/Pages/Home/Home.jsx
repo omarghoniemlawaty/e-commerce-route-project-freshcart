@@ -16,29 +16,33 @@ const Home = () => {
  
   useEffect(() => {
     const getProducts = async () => {
-      setLoading(true)
-    const responsive = await mainFormHandlerTypeRaw({
-      method: "get",
-      type: "api/v1/products",
-    });
-    setLoading(false)
-    
-  setProducts(responsive?.data?.data)
-   setMostViewedProducts(
-      responsive?.data.data.filter(
-        (product, index) =>
-          index === 10 ||
-          index === 14 ||
-          index === 12 ||
-          index === 22 ||
-          index === 5 ||
-          index === 2 ||
-          index === 35
-      )
-    );
+      setLoading(true);
+      const responsive = await mainFormHandlerTypeRaw({
+        method: "get",
+        type: "api/v1/products",
+      });
+      setLoading(false);
 
-    setProducts(responsive?.data?.data);
-    setListProducts(responsive?.data?.data.filter(
+      if (!responsive || !responsive.data || !responsive.data.data) {
+        // Optionally set an error state or show a message
+        console.error("Failed to fetch products:", responsive);
+        return;
+      }
+
+      setProducts(responsive.data.data);
+      setMostViewedProducts(
+        responsive.data.data.filter(
+          (product, index) =>
+            index === 10 ||
+            index === 14 ||
+            index === 12 ||
+            index === 22 ||
+            index === 5 ||
+            index === 2 ||
+            index === 35
+        )
+      );
+      setListProducts(responsive.data.data.filter(
       (product) => product.category.name === "Women's Fashion"
     ))
   };

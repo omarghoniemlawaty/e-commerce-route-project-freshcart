@@ -9,7 +9,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { WishlistContext } from "../Store/WishlistContext";
 
 const Header = () => {
-  const ref = useRef(0);
+  const ref = useRef(null);
   const location = useLocation();
   const { items, token } = useContext(CartContext);
   const { responsive } = useContext(WishlistContext);
@@ -18,9 +18,11 @@ const Header = () => {
 
   useEffect(() => {
     const changeBackground = () => {
-      if (window.scrollY <= ref.current.clientHeight) {
+      if (ref.current && window.scrollY <= ref.current.clientHeight) {
         setChange(true);
-      } else setChange(false);
+      } else {
+        setChange(false);
+      }
     };
     window.addEventListener("scroll", changeBackground);
     return () => {
@@ -129,8 +131,8 @@ const Header = () => {
                       }}
                     >
                       <p className="wishlist-product-count">
-                        {responsive?.data?.data.length !== undefined
-                          ? responsive?.data?.data.length
+                        {Array.isArray(responsive?.data?.data)
+                          ? responsive.data.data.length
                           : 0}
                       </p>
                     </i>
